@@ -1,6 +1,20 @@
 from flask import Flask, render_template
 
+from database.db import get_db, init_db, seed_db
+
 app = Flask(__name__)
+
+
+# ------------------------------------------------------------------ #
+# Database setup                                                      #
+# ------------------------------------------------------------------ #
+# Ensure tables exist and demo data is seeded exactly once on startup.
+# Module-level (not gated on __main__) so `flask run` and tests both
+# trigger initialization.
+
+with app.app_context():
+    init_db()
+    seed_db()
 
 
 # ------------------------------------------------------------------ #
