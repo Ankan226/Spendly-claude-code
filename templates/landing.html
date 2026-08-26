@@ -3,75 +3,82 @@
 {% block title %}Spendly — Track Every Rupee{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
-{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">{% endblock %}
 
 {% block content %}
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Free to use &middot; No credit card needed
+<section class="hero-v2">
+  <div class="hero-v2-inner">
+
+    <div class="hero-v2-badge">
+      <span class="hero-v2-dot"></span>
+      Free to use · No credit card needed
     </div>
-    <h1 class="hero-title">
+
+    <h1 class="hero-v2-title">
       Track every rupee.<br>
-      <em>Know where it goes.</em>
+      <span class="hero-v2-title-accent">Know where it goes.</span>
     </h1>
-    <p class="hero-subtitle">
-      Spendly helps you log expenses, spot patterns, and stay
+
+    <p class="hero-v2-subtitle">
+      Spendly helps you log expenses, spot patterns, and stay<br>
       on budget — without the spreadsheet headache.
     </p>
-    <div class="hero-actions">
-      <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
-      <button type="button" class="btn-primary" data-open-video>See how it works</button>
+
+    <div class="hero-v2-actions">
+      <a href="{{ url_for('register') }}" class="hero-v2-btn">Create free account</a>
+      <a href="#" id="open-demo-modal" class="hero-v2-btn">See how it works</a>
     </div>
-  </div>
-  <div class="hero-visual">
-    <div class="mock-window">
-      <div class="mock-window-dots">
-        <span class="dot dot-red"></span>
-        <span class="dot dot-yellow"></span>
-        <span class="dot dot-green"></span>
-      </div>
-      <div class="mock-stats">
-        <div class="mock-stat">
-          <span class="mock-stat-label">This month</span>
-          <span class="mock-stat-value">₹18,240</span>
-          <span class="mock-stat-meta mock-stat-meta-up">+12% vs last</span>
+
+    <div class="hero-v2-mock">
+      <div class="mock-browser">
+        <div class="mock-browser-bar">
+          <span class="mock-dot mock-dot-red"></span>
+          <span class="mock-dot mock-dot-yellow"></span>
+          <span class="mock-dot mock-dot-green"></span>
         </div>
-        <div class="mock-stat">
-          <span class="mock-stat-label">Budget left</span>
-          <span class="mock-stat-value">₹6,760</span>
-          <span class="mock-stat-meta mock-stat-meta-accent">43% remaining</span>
-        </div>
-        <div class="mock-stat">
-          <span class="mock-stat-label">Transactions</span>
-          <span class="mock-stat-value">34</span>
-          <span class="mock-stat-meta mock-stat-meta-muted">this month</span>
-        </div>
-      </div>
-      <div class="mock-cats">
-        <div class="mock-cat-row">
-          <span class="mock-cat-name">Food</span>
-          <div class="mock-bar-track">
-            <div class="mock-bar mock-bar-food" style="width: 78%"></div>
+        <div class="mock-browser-body">
+          <div class="mock-stats">
+            <div class="mock-stat-card">
+              <span class="mock-stat-label">This month</span>
+              <span class="mock-stat-value">₹18,240</span>
+              <span class="mock-stat-sub mock-stat-sub--danger">+12% vs last</span>
+            </div>
+            <div class="mock-stat-card">
+              <span class="mock-stat-label">Budget left</span>
+              <span class="mock-stat-value">₹6,760</span>
+              <span class="mock-stat-sub mock-stat-sub--success">43% remaining</span>
+            </div>
+            <div class="mock-stat-card">
+              <span class="mock-stat-label">Transactions</span>
+              <span class="mock-stat-value">34</span>
+              <span class="mock-stat-sub">this month</span>
+            </div>
           </div>
-        </div>
-        <div class="mock-cat-row">
-          <span class="mock-cat-name">Travel</span>
-          <div class="mock-bar-track">
-            <div class="mock-bar mock-bar-travel" style="width: 55%"></div>
-          </div>
-        </div>
-        <div class="mock-cat-row">
-          <span class="mock-cat-name">Bills</span>
-          <div class="mock-bar-track">
-            <div class="mock-bar mock-bar-bills" style="width: 42%"></div>
+          <div class="mock-cats">
+            <div class="mock-cat-row">
+              <span class="mock-cat-label">Food</span>
+              <div class="mock-cat-track">
+                <div class="mock-cat-bar mock-cat-bar--orange" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="mock-cat-row">
+              <span class="mock-cat-label">Travel</span>
+              <div class="mock-cat-track">
+                <div class="mock-cat-bar mock-cat-bar--blue" style="width: 55%"></div>
+              </div>
+            </div>
+            <div class="mock-cat-row">
+              <span class="mock-cat-label">Bills</span>
+              <div class="mock-cat-track">
+                <div class="mock-cat-bar mock-cat-bar--purple" style="width: 38%"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -104,14 +111,16 @@
   </div>
 </section>
 
-<div class="video-modal" id="video-modal" hidden>
-  <div class="video-modal-backdrop" data-close-video></div>
-  <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-label="How Spendly works">
-    <button type="button" class="video-modal-close" aria-label="Close" data-close-video>&times;</button>
-    <div class="video-modal-frame">
-      <iframe id="video-modal-iframe" src="" title="How Spendly works" frameborder="0"
+<!-- Demo modal -->
+<div id="demo-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" id="close-demo-modal" aria-label="Close">&times;</button>
+    <div class="modal-video-wrapper">
+      <iframe id="demo-iframe" src="" data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+        title="Spendly demo" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </div>
@@ -121,33 +130,39 @@
 {% block scripts %}
 <script>
   (function () {
-    var VIDEO_URL = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&enablejsapi=1';
-    var modal = document.getElementById('video-modal');
-    var iframe = document.getElementById('video-modal-iframe');
+    const modal = document.getElementById('demo-modal');
+    const iframe = document.getElementById('demo-iframe');
+    const openBtn = document.getElementById('open-demo-modal');
+    const closeBtn = document.getElementById('close-demo-modal');
 
     function openModal() {
-      iframe.src = VIDEO_URL;
-      modal.hidden = false;
+      iframe.src = iframe.dataset.src;
+      modal.setAttribute('aria-hidden', 'false');
+      modal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-      modal.hidden = true;
       iframe.src = '';
+      modal.setAttribute('aria-hidden', 'true');
+      modal.classList.remove('is-open');
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('[data-open-video]').forEach(function (btn) {
-      btn.addEventListener('click', openModal);
+    openBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal();
     });
 
-    document.querySelectorAll('[data-close-video]').forEach(function (el) {
-      el.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !modal.hidden) closeModal();
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
-  })();
+  }());
 </script>
 {% endblock %}
